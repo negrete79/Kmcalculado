@@ -6,19 +6,19 @@
     <title>KM Calculado - Gestão de Lucro</title>
     <link rel="manifest" href="manifest.json">
     <meta name="theme-color" content="#2563eb">
+    <meta name="author" content="Elias Costa Negret's">
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <!-- BIBLIOTECA PARA GERAR PDF -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-    <style> 
-        #installBtn { 
-            animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite; 
-            display: none; /* Escondido por padrão */
-        } 
-        @keyframes pulse { 
-            0%, 100% { opacity: 1; } 
-            50% { opacity: .7; } 
+    <style>
+        #installBtn {
+            animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+            display: none;
+        }
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: .7; }
         }
         .trip-item, .fine-item {
             transition: all 0.3s ease;
@@ -88,21 +88,14 @@
                     <div class="flex justify-between items-center mb-2">
                         <h3 class="font-bold text-lg text-gray-700">Detalhamento</h3>
                         <div class="space-x-2">
-                            <button id="downloadReportCsvBtn" class="text-xs bg-green-600 hover:bg-green-700 text-white font-medium py-1 px-2 rounded">
-                                <i class="fas fa-file-csv mr-1"></i>CSV
-                            </button>
-                            <button id="downloadReportPdfBtn" class="text-xs bg-red-600 hover:bg-red-700 text-white font-medium py-1 px-2 rounded">
-                                <i class="fas fa-file-pdf mr-1"></i>PDF
-                            </button>
-                            <button id="clearAllTrips" class="text-xs text-red-500 hover:text-red-700 font-medium hidden">
-                                <i class="fas fa-trash-alt mr-1"></i>Limpar Tudo
-                            </button>
+                            <button id="downloadReportCsvBtn" class="text-xs bg-green-600 hover:bg-green-700 text-white font-medium py-1 px-2 rounded"><i class="fas fa-file-csv mr-1"></i>CSV</button>
+                            <button id="downloadReportPdfBtn" class="text-xs bg-red-600 hover:bg-red-700 text-white font-medium py-1 px-2 rounded"><i class="fas fa-file-pdf mr-1"></i>PDF</button>
+                            <button id="clearAllTrips" class="text-xs text-red-500 hover:text-red-700 font-medium hidden"><i class="fas fa-trash-alt mr-1"></i>Limpar Tudo</button>
                         </div>
                     </div>
                     <div id="reports-list" class="space-y-2 max-h-64 overflow-y-auto"><p class="text-gray-500 text-center">Nenhuma viagem encontrada para o período.</p></div>
                 </div>
             </section>
-            <!-- NOVA SEÇÃO DE LUCROS -->
             <section id="profits-view" class="view hidden">
                 <h2 class="text-xl font-semibold mb-3 text-gray-700">Meus Lucros</h2>
                 <div class="bg-gray-50 p-3 rounded-lg mb-4 space-y-3">
@@ -110,23 +103,11 @@
                     <div id="profits-custom-date-range" class="hidden grid grid-cols-2 gap-2"><div><label class="block text-xs font-medium text-gray-700">De</label><input type="date" id="profits-date-from" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm p-1 border text-xs"></div><div><label class="block text-xs font-medium text-gray-700">Até</label><input type="date" id="profits-date-to" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm p-1 border text-xs"></div></div>
                 </div>
                 <div class="grid grid-cols-1 gap-4 mb-4">
-                    <div class="bg-green-100 p-4 rounded-lg border border-green-300">
-                        <h3 class="font-bold text-green-800 mb-1"><i class="fas fa-arrow-up mr-2"></i>Receita Total</h3>
-                        <p class="text-2xl font-bold text-green-600" id="total-earnings">R$ 0,00</p>
-                    </div>
-                    <div class="bg-red-100 p-4 rounded-lg border border-red-300">
-                        <h3 class="font-bold text-red-800 mb-1"><i class="fas fa-arrow-down mr-2"></i>Custo Estimado do Período</h3>
-                        <p class="text-2xl font-bold text-red-600" id="period-cost">R$ 0,00</p>
-                    </div>
-                    <div class="bg-blue-100 p-4 rounded-lg border border-blue-300">
-                        <h3 class="font-bold text-blue-800 mb-1"><i class="fas fa-balance-scale mr-2"></i>Lucro Líquido</h3>
-                        <p class="text-2xl font-bold text-blue-600" id="net-profit">R$ 0,00</p>
-                    </div>
+                    <div class="bg-green-100 p-4 rounded-lg border border-green-300"><h3 class="font-bold text-green-800 mb-1"><i class="fas fa-arrow-up mr-2"></i>Receita Total</h3><p class="text-2xl font-bold text-green-600" id="total-earnings">R$ 0,00</p></div>
+                    <div class="bg-red-100 p-4 rounded-lg border border-red-300"><h3 class="font-bold text-red-800 mb-1"><i class="fas fa-arrow-down mr-2"></i>Custo Estimado do Período</h3><p class="text-2xl font-bold text-red-600" id="period-cost">R$ 0,00</p></div>
+                    <div class="bg-blue-100 p-4 rounded-lg border border-blue-300"><h3 class="font-bold text-blue-800 mb-1"><i class="fas fa-balance-scale mr-2"></i>Lucro Líquido</h3><p class="text-2xl font-bold text-blue-600" id="net-profit">R$ 0,00</p></div>
                 </div>
-                <div>
-                    <h3 class="font-bold text-lg text-gray-700 mb-2">Viagens de Trabalho (para adicionar valor recebido)</h3>
-                    <div id="profits-list" class="space-y-2 max-h-64 overflow-y-auto"><p class="text-gray-500 text-center">Nenhuma viagem de trabalho encontrada para o período.</p></div>
-                </div>
+                <div><h3 class="font-bold text-lg text-gray-700 mb-2">Viagens de Trabalho (para adicionar valor recebido)</h3><div id="profits-list" class="space-y-2 max-h-64 overflow-y-auto"><p class="text-gray-500 text-center">Nenhuma viagem de trabalho encontrada para o período.</p></div></div>
             </section>
             <section id="fines-view" class="view hidden">
                 <h2 class="text-xl font-semibold mb-3 text-gray-700">Multas e Custos Extras</h2>
@@ -139,30 +120,27 @@
                         <button type="submit" class="w-full bg-yellow-600 hover:bg-yellow-700 text-white font-bold py-2 px-4 rounded-lg transition duration-300"><i class="fas fa-plus mr-2"></i>Adicionar Multa</button>
                     </form>
                 </div>
-                <div>
-                    <div class="flex justify-between items-center mb-2">
-                        <h3 class="font-bold text-lg text-gray-700">Histórico de Multas</h3>
-                        <button id="clearAllFines" class="text-xs text-red-500 hover:text-red-700 font-medium hidden">
-                            <i class="fas fa-trash-alt mr-1"></i>Limpar Tudo
-                        </button>
-                    </div>
-                    <div id="fines-list" class="space-y-2 max-h-64 overflow-y-auto"></div>
-                </div>
+                <div><div class="flex justify-between items-center mb-2"><h3 class="font-bold text-lg text-gray-700">Histórico de Multas</h3><button id="clearAllFines" class="text-xs text-red-500 hover:text-red-700 font-medium hidden"><i class="fas fa-trash-alt mr-1"></i>Limpar Tudo</button></div><div id="fines-list" class="space-y-2 max-h-64 overflow-y-auto"></div></div>
             </section>
             <section id="settings-view" class="view hidden">
                 <h2 class="text-xl font-semibold mb-3 text-gray-700">Configurar Dados</h2>
-                <!-- NOVA SEÇÃO DE BACKUP -->
                 <div class="bg-indigo-50 border border-indigo-200 p-4 rounded-lg mb-4">
                     <h3 class="font-bold text-lg mb-2 text-indigo-800"><i class="fas fa-database mr-2"></i>Backup de Dados</h3>
                     <p class="text-sm text-gray-600 mb-3">Salve seus dados para não perdê-los. Você pode restaurá-los a qualquer momento.</p>
                     <div class="flex space-x-2">
-                        <button id="downloadBackupBtn" class="flex-1 bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded-lg transition duration-300 text-sm">
-                            <i class="fas fa-download mr-1"></i>Baixar Backup
-                        </button>
-                        <button id="uploadBackupBtn" class="flex-1 bg-purple-600 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded-lg transition duration-300 text-sm">
-                            <i class="fas fa-upload mr-1"></i>Restaurar Backup
-                        </button>
+                        <button id="downloadBackupBtn" class="flex-1 bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded-lg transition duration-300 text-sm"><i class="fas fa-download mr-1"></i>Baixar Backup</button>
+                        <button id="uploadBackupBtn" class="flex-1 bg-purple-600 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded-lg transition duration-300 text-sm"><i class="fas fa-upload mr-1"></i>Restaurar Backup</button>
                         <input type="file" id="backupFileInput" accept=".json" class="hidden">
+                    </div>
+                </div>
+                <div class="bg-gray-50 border border-gray-200 p-4 rounded-lg mb-4">
+                    <h3 class="font-bold text-lg mb-2 text-gray-800"><i class="fas fa-info-circle mr-2"></i>Sobre o KM Calculado</h3>
+                    <p class="text-sm text-gray-600 mb-3">Versão <span id="app-version">1.0.0</span></p>
+                    <p class="text-sm text-gray-700 mb-3">Desenvolvido com ❤️ por Elias Costa Negret's para motoristas de aplicativo.</p>
+                    <div class="space-y-2">
+                        <button id="checkUpdatesBtn" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg transition duration-300 text-sm"><i class="fas fa-sync-alt mr-1"></i>Verificar Atualizações</button>
+                        <a href="https://github.com" target="_blank" class="block w-full bg-gray-600 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded-lg transition duration-300 text-sm text-center"><i class="fab fa-github mr-1"></i>Ver Código no GitHub</a>
+                        <a href="https://wa.me/31990852533" target="_blank" class="block w-full bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-lg transition duration-300 text-sm text-center"><i class="fab fa-whatsapp mr-1"></i>Falar com o Desenvolvedor</a>
                     </div>
                 </div>
                 <form id="configForm" class="space-y-4">
@@ -176,68 +154,16 @@
                     <div>
                         <h3 class="text-lg font-medium text-gray-700 mb-2">📜 Propriedade do Veículo</h3>
                         <div class="space-y-2">
-                            <label class="flex items-center p-3 border rounded-lg cursor-pointer hover:bg-gray-50">
-                                <input type="radio" name="vehicleType" value="rented" class="mr-3 text-blue-600"><i class="fas fa-key mr-2 text-gray-500"></i><span>Alugado</span>
-                            </label>
-                            <label class="flex items-center p-3 border rounded-lg cursor-pointer hover:bg-gray-50">
-                                <input type="radio" name="vehicleType" value="financed" class="mr-3 text-blue-600"><i class="fas fa-hand-holding-usd mr-2 text-gray-500"></i><span>Financiado</span>
-                            </label>
-                            <label class="flex items-center p-3 border rounded-lg cursor-pointer hover:bg-gray-50">
-                                <input type="radio" name="vehicleType" value="owned" class="mr-3 text-blue-600" checked><i class="fas fa-car mr-2 text-gray-500"></i><span>Quitado</span>
-                            </label>
+                            <label class="flex items-center p-3 border rounded-lg cursor-pointer hover:bg-gray-50"><input type="radio" name="vehicleType" value="rented" class="mr-3 text-blue-600"><i class="fas fa-key mr-2 text-gray-500"></i><span>Alugado</span></label>
+                            <label class="flex items-center p-3 border rounded-lg cursor-pointer hover:bg-gray-50"><input type="radio" name="vehicleType" value="financed" class="mr-3 text-blue-600"><i class="fas fa-hand-holding-usd mr-2 text-gray-500"></i><span>Financiado</span></label>
+                            <label class="flex items-center p-3 border rounded-lg cursor-pointer hover:bg-gray-50"><input type="radio" name="vehicleType" value="owned" class="mr-3 text-blue-600" checked><i class="fas fa-car mr-2 text-gray-500"></i><span>Quitado</span></label>
                         </div>
                     </div>
                     <div id="vehicle-details-section">
-                        <!-- CAMPOS PARA VEÍCULO ALUGADO -->
-                        <div id="rented-group" class="border-b pb-4">
-                            <h3 class="text-lg font-medium text-gray-700 mb-2">🔑 Dados do Veículo Alugado</h3>
-                            <div class="grid grid-cols-2 gap-3">
-                                <div><label class="block text-sm font-medium text-gray-700">Aluguel Semanal (R$)</label><input type="number" id="rental-cost" step="0.01" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm p-2 border" value="700.00"></div>
-                                <div><label class="block text-sm font-medium text-gray-700">Franquia Semanal (km)</label><input type="number" id="rental-allowance" step="1" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm p-2 border" value="1500"></div>
-                                <div><label class="block text-sm font-medium text-gray-700">Taxa Excesso (R$/km)</label><input type="number" id="excess-mileage-fee" step="0.01" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm p-2 border" value="0.40"></div>
-                            </div>
-                        </div>
-                        <!-- CAMPOS PARA VEÍCULO FINANCIADO -->
-                        <div id="financed-group" class="hidden border-b pb-4">
-                            <h3 class="text-lg font-medium text-gray-700 mb-2">💰 Dados do Veículo Financiado</h3>
-                            <div class="grid grid-cols-2 gap-3">
-                                <div><label class="block text-sm font-medium text-gray-700">Parcela do Financiamento (R$)</label><input type="number" id="financed-payment" step="0.01" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm p-2 border"></div>
-                                <div><label class="block text-sm font-medium text-gray-700">Seguro / IPVA (R$)</label><input type="number" id="insurance-ipva-cost" step="0.01" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm p-2 border"></div>
-                            </div>
-                        </div>
-                        <!-- CAMPOS PARA VEÍCULO QUITADO -->
-                        <div id="owned-group" class="hidden border-b pb-4">
-                            <h3 class="text-lg font-medium text-gray-700 mb-2">🚙 Dados do Veículo Quitado</h3>
-                            <div class="grid grid-cols-2 gap-3">
-                                <div><label class="block text-sm font-medium text-gray-700">Depreciação Estimada (R$)</label><input type="number" id="depreciation-cost" step="0.01" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm p-2 border"></div>
-                                <div><label class="block text-sm font-medium text-gray-700">Seguro / IPVA (R$)</label><input type="number" id="insurance-ipva-cost-owned" step="0.01" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm p-2 border"></div>
-                            </div>
-                        </div>
-                        <!-- CAMPOS COMUNS A TODOS -->
-                        <div class="border-b pb-4">
-                            <h3 class="text-lg font-medium text-gray-700 mb-2">⛽ Dados do Combustível</h3>
-                            <div class="grid grid-cols-1 gap-3">
-                                <div>
-                                    <label class="block text-sm font-medium text-gray-700">Tipo de Combustível</label>
-                                    <div class="mt-2 space-y-2">
-                                        <label class="flex items-center">
-                                            <input type="radio" name="fuelType" value="gasolina" class="mr-2 text-blue-600" checked>
-                                            <i class="fas fa-gas-pump mr-2 text-gray-500"></i>
-                                            <span>Gasolina</span>
-                                        </label>
-                                        <label class="flex items-center">
-                                            <input type="radio" name="fuelType" value="etanol" class="mr-2 text-blue-600">
-                                            <i class="fas fa-leaf mr-2 text-gray-500"></i>
-                                            <span>Etanol</span>
-                                        </label>
-                                    </div>
-                                </div>
-                                <div class="grid grid-cols-2 gap-3">
-                                    <div><label class="block text-sm font-medium text-gray-700">Preço (R$/L)</label><input type="number" id="fuel-price" step="0.01" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm p-2 border" value="5.85"></div>
-                                    <div><label class="block text-sm font-medium text-gray-700">Consumo (km/L)</label><input type="number" id="fuel-consumption" step="0.1" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm p-2 border" value="7.0"></div>
-                                </div>
-                            </div>
-                        </div>
+                        <div id="rented-group" class="border-b pb-4"><h3 class="text-lg font-medium text-gray-700 mb-2">🔑 Dados do Veículo Alugado</h3><div class="grid grid-cols-2 gap-3"><div><label class="block text-sm font-medium text-gray-700">Aluguel Semanal (R$)</label><input type="number" id="rental-cost" step="0.01" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm p-2 border" value="700.00"></div><div><label class="block text-sm font-medium text-gray-700">Franquia Semanal (km)</label><input type="number" id="rental-allowance" step="1" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm p-2 border" value="1500"></div><div><label class="block text-sm font-medium text-gray-700">Taxa Excesso (R$/km)</label><input type="number" id="excess-mileage-fee" step="0.01" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm p-2 border" value="0.40"></div></div></div>
+                        <div id="financed-group" class="hidden border-b pb-4"><h3 class="text-lg font-medium text-gray-700 mb-2">💰 Dados do Veículo Financiado</h3><div class="grid grid-cols-2 gap-3"><div><label class="block text-sm font-medium text-gray-700">Parcela do Financiamento (R$)</label><input type="number" id="financed-payment" step="0.01" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm p-2 border"></div><div><label class="block text-sm font-medium text-gray-700">Seguro / IPVA (R$)</label><input type="number" id="insurance-ipva-cost" step="0.01" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm p-2 border"></div></div></div>
+                        <div id="owned-group" class="hidden border-b pb-4"><h3 class="text-lg font-medium text-gray-700 mb-2">🚙 Dados do Veículo Quitado</h3><div class="grid grid-cols-2 gap-3"><div><label class="block text-sm font-medium text-gray-700">Depreciação Estimada (R$)</label><input type="number" id="depreciation-cost" step="0.01" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm p-2 border"></div><div><label class="block text-sm font-medium text-gray-700">Seguro / IPVA (R$)</label><input type="number" id="insurance-ipva-cost-owned" step="0.01" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm p-2 border"></div></div></div>
+                        <div class="border-b pb-4"><h3 class="text-lg font-medium text-gray-700 mb-2">⛽ Dados do Combustível</h3><div class="grid grid-cols-1 gap-3"><div><label class="block text-sm font-medium text-gray-700">Tipo de Combustível</label><div class="mt-2 space-y-2"><label class="flex items-center"><input type="radio" name="fuelType" value="gasolina" class="mr-2 text-blue-600" checked><i class="fas fa-gas-pump mr-2 text-gray-500"></i><span>Gasolina</span></label><label class="flex items-center"><input type="radio" name="fuelType" value="etanol" class="mr-2 text-blue-600"><i class="fas fa-leaf mr-2 text-gray-500"></i><span>Etanol</span></label></div></div><div class="grid grid-cols-2 gap-3"><div><label class="block text-sm font-medium text-gray-700">Preço (R$/L)</label><input type="number" id="fuel-price" step="0.01" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm p-2 border" value="5.85"></div><div><label class="block text-sm font-medium text-gray-700">Consumo (km/L)</label><input type="number" id="fuel-consumption" step="0.1" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm p-2 border" value="7.0"></div></div></div></div>
                     </div>
                     <div class="border-t pt-4">
                         <h3 class="text-lg font-medium text-gray-700 mb-2">🎯 Metas e Outros Custos Semanais</h3>
@@ -256,12 +182,12 @@
         </main>
         <nav class="bg-white rounded-lg shadow-lg mt-4 p-2">
             <ul class="flex justify-around text-xs">
-                <li><button onclick="showView('analysis')" class="nav-btn flex flex-col items-center p-2 text-blue-600"><i class="fas fa-chart-pie text-xl"></i><span class="text-xs">Análise</span></button></li>
-                <li><button onclick="showView('trip-control')" class="nav-btn flex flex-col items-center p-2 text-gray-600 hover:text-blue-600"><i class="fas fa-road text-xl"></i><span class="text-xs">Viagem</span></button></li>
-                <li><button onclick="showView('reports')" class="nav-btn flex flex-col items-center p-2 text-gray-600 hover:text-blue-600"><i class="fas fa-file-alt text-xl"></i><span class="text-xs">Relatório</span></button></li>
-                <li><button onclick="showView('profits')" class="nav-btn flex flex-col items-center p-2 text-gray-600 hover:text-blue-600"><i class="fas fa-dollar-sign text-xl"></i><span class="text-xs">Lucros</span></button></li>
-                <li><button onclick="showView('fines')" class="nav-btn flex flex-col items-center p-2 text-gray-600 hover:text-blue-600"><i class="fas fa-gavel text-xl"></i><span class="text-xs">Multas</span></button></li>
-                <li><button onclick="showView('settings')" class="nav-btn flex flex-col items-center p-2 text-gray-600 hover:text-blue-600"><i class="fas fa-cog text-xl"></i><span class="text-xs">Config</span></button></li>
+                <li><button onclick="window.showView('analysis')" class="nav-btn flex flex-col items-center p-2 text-blue-600"><i class="fas fa-chart-pie text-xl"></i><span class="text-xs">Análise</span></button></li>
+                <li><button onclick="window.showView('trip-control')" class="nav-btn flex flex-col items-center p-2 text-gray-600 hover:text-blue-600"><i class="fas fa-road text-xl"></i><span class="text-xs">Viagem</span></button></li>
+                <li><button onclick="window.showView('reports')" class="nav-btn flex flex-col items-center p-2 text-gray-600 hover:text-blue-600"><i class="fas fa-file-alt text-xl"></i><span class="text-xs">Relatório</span></button></li>
+                <li><button onclick="window.showView('profits')" class="nav-btn flex flex-col items-center p-2 text-gray-600 hover:text-blue-600"><i class="fas fa-dollar-sign text-xl"></i><span class="text-xs">Lucros</span></button></li>
+                <li><button onclick="window.showView('fines')" class="nav-btn flex flex-col items-center p-2 text-gray-600 hover:text-blue-600"><i class="fas fa-gavel text-xl"></i><span class="text-xs">Multas</span></button></li>
+                <li><button onclick="window.showView('settings')" class="nav-btn flex flex-col items-center p-2 text-gray-600 hover:text-blue-600"><i class="fas fa-cog text-xl"></i><span class="text-xs">Config</span></button></li>
             </ul>
         </nav>
     </div>
@@ -270,7 +196,8 @@
         // =================================================================
         // ESTADO DO APLICATIVO
         // =================================================================
-        let appData = {
+        const appData = {
+            version: '1.0.0',
             vehicleModel: '', vehicleCategory: '', vehicleType: 'owned',
             targetProfit: 1250.00, targetKm: 1500,
             costs: {
@@ -280,17 +207,18 @@
                 owned: { depreciationCost: 200.00, insuranceIpvaCost: 0 }
             },
             fuel: { type: 'gasolina', price: 5.85, consumption: 7.0 },
-            trips: [], // fare será adicionada aqui
+            trips: [],
             fines: []
         };
 
         let pieChartInstance = null;
-        
-        // --- VARIÁVEIS DE CONTROLE DE VIAGEM (GPS) ---
         let tripStartTime = null;
         let watchId = null;
         let lastPosition = null;
         let totalDistance = 0;
+
+        // URL DO SEU GIST COM O ARQUIRO VERSION.JSON (SUBSTITUA PELA SUA)
+        const REMOTE_VERSION_URL = 'https://gist.githubusercontent.com/SEU-USUARIO/SEU-GIST-ID/raw/version.json';
 
         // =================================================================
         // FUNÇÕES DE ARMAZENAMENTO
@@ -311,7 +239,9 @@
             try {
                 const savedData = localStorage.getItem('kmCalculadoAppData');
                 if (savedData) {
-                    appData = { ...appData, ...JSON.parse(savedData) };
+                    const parsedData = JSON.parse(savedData);
+                    // Mescla os dados salvos com os padrões para garantir que todas as propriedades existam
+                    Object.assign(appData, parsedData);
                     if (!appData.fuel.type) appData.fuel.type = 'gasolina';
                     appData.trips = appData.trips.map(trip => ({ ...trip, fare: trip.fare || 0 }));
                     console.log("Dados carregados com sucesso!");
@@ -336,11 +266,15 @@
                 btn.classList.remove('text-blue-600');
                 btn.classList.add('text-gray-600');
             });
-            if (window.event && window.event.target.closest('.nav-btn')) {
-                const clickedBtn = window.event.target.closest('.nav-btn');
-                clickedBtn.classList.remove('text-gray-600');
-                clickedBtn.classList.add('text-blue-600');
-            }
+            
+            // Encontrar o botão correspondente à visualização
+            const navButtons = document.querySelectorAll('.nav-btn');
+            navButtons.forEach(btn => {
+                if (btn.getAttribute('onclick').includes(viewName)) {
+                    btn.classList.remove('text-gray-600');
+                    btn.classList.add('text-blue-600');
+                }
+            });
 
             if (viewName === 'analysis') {
                 calculateAndDisplayAnalysis();
@@ -354,6 +288,7 @@
         function updateVehicleModelDisplay() {
             const displayElement = document.getElementById('vehicle-model-display');
             displayElement.textContent = appData.vehicleModel ? `Veículo: ${appData.vehicleModel}` : 'Configure seu veículo';
+            document.getElementById('app-version').textContent = appData.version;
         }
 
         function updateVehicleDetailsUI() {
@@ -401,57 +336,39 @@
             updateVehicleDetailsUI();
             populateVehicleSpecificFields();
         }
-
+        
         // =================================================================
-        // FUNÇÕES DE BACKUP E RESTAURAÇÃO
+        // FUNÇÃO DE VERIFICAÇÃO DE ATUALIZAÇÕES
         // =================================================================
-        function downloadBackup() {
-            const dataStr = JSON.stringify(appData, null, 2);
-            const dataBlob = new Blob([dataStr], { type: 'application/json' });
-            const url = URL.createObjectURL(dataBlob);
-            const link = document.createElement('a');
-            link.setAttribute('href', url);
-            link.setAttribute('download', `km_calculado_backup_${new Date().toISOString().split('T')[0]}.json`);
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
-            URL.revokeObjectURL(url);
-            alert('Backup baixado com sucesso!');
-        }
+        async function checkForUpdates() {
+            const checkBtn = document.getElementById('checkUpdatesBtn');
+            checkBtn.disabled = true;
+            checkBtn.innerHTML = '<i class="fas fa-spinner fa-spin mr-1"></i>Verificando...';
+            
+            try {
+                const response = await fetch(REMOTE_VERSION_URL);
+                if (!response.ok) throw new Error('Falha ao buscar versão remota.');
+                const remoteData = await response.json();
+                const remoteVersion = remoteData.version;
 
-        function uploadBackup(event) {
-            const file = event.target.files[0];
-            if (!file) return;
-
-            const reader = new FileReader();
-            reader.onload = function(e) {
-                try {
-                    const content = e.target.result;
-                    const importedData = JSON.parse(content);
-
-                    // Validação simples para garantir que é um arquivo de backup válido
-                    if (importedData && typeof importedData === 'object' && importedData.trips && importedData.costs) {
-                        if (confirm('Atenção: Isso irá substituir TODOS os seus dados atuais. Deseja continuar?')) {
-                            appData = importedData;
-                            saveData();
-                            loadData(); // Recarrega a UI com os novos dados
-                            alert('Backup restaurado com sucesso!');
-                        }
-                    } else {
-                        alert('Arquivo de backup inválido ou corrompido.');
+                if (remoteVersion > appData.version) {
+                    if (confirm(`Uma nova versão (${remoteVersion}) está disponível! Deseja recarregar a página para atualizar?`)) {
+                        window.location.reload(true);
                     }
-                } catch (error) {
-                    console.error("Erro ao ler o arquivo de backup:", error);
-                    alert('Falha ao ler o arquivo. Verifique se é um backup válido do KM Calculado.');
+                } else {
+                    alert('Você já está com a versão mais recente!');
                 }
-            };
-            reader.readAsText(file);
-            // Limpa o input para permitir selecionar o mesmo arquivo novamente, se necessário
-            event.target.value = '';
+            } catch (error) {
+                console.error('Erro na verificação de atualizações:', error);
+                alert('Não foi possível verificar atualizações. Verifique sua conexão com a internet.');
+            } finally {
+                checkBtn.disabled = false;
+                checkBtn.innerHTML = '<i class="fas fa-sync-alt mr-1"></i>Verificar Atualizações';
+            }
         }
 
         // =================================================================
-        // FUNÇÕES DE RELATÓRIO E LUCROS
+        // FUNÇÕES DE RELATÓRIO, LUCROS E BACKUP
         // =================================================================
         function getFilteredTrips(periodSelectorId, customFromId, customToId) {
             const period = document.getElementById(periodSelectorId).value;
@@ -477,7 +394,7 @@
             const typeFilter = document.querySelector('input[name="report-filter-type"]:checked').value;
             const filteredByType = filteredTrips.filter(trip => typeFilter === 'all' || trip.type === typeFilter);
             
-            const totalWorkKm = filteredTrips.filter(t => t.type === 'work').reduce((sum, trip) => sum + trip.distance, 0);
+            const totalWorkKm = filteredByType.filter(t => t.type === 'work').reduce((sum, trip) => sum + trip.distance, 0);
             const fuelCostPerKm = appData.fuel.consumption > 0 ? appData.fuel.price / appData.fuel.consumption : 0;
             const totalFuelCost = totalWorkKm * fuelCostPerKm;
             
@@ -516,7 +433,7 @@
                     </div>
                     <div class="text-right">
                         <p class="font-bold">${trip.distance.toFixed(2)} km</p>
-                        <button onclick="deleteTrip(${originalIndex})" class="text-xs text-red-500 hover:text-red-700"><i class="fas fa-trash"></i></button>
+                        <button onclick="window.deleteTrip(${originalIndex})" class="text-xs text-red-500 hover:text-red-700"><i class="fas fa-trash"></i></button>
                     </div>
                 `;
                 reportsList.appendChild(tripElement);
@@ -554,13 +471,11 @@
             const typeFilter = document.querySelector('input[name="report-filter-type"]:checked').value;
             const filteredByType = filteredTrips.filter(trip => typeFilter === 'all' || trip.type === typeFilter);
 
-            // Cabeçalho
             doc.setFontSize(18);
             doc.text('Relatorio de Viagens - KM Calculado', 14, 20);
             doc.setFontSize(12);
             doc.text(`Periodo: ${document.getElementById('report-period').options[document.getElementById('report-period').selectedIndex].text}`, 14, 30);
 
-            // Tabela
             let yPosition = 45;
             doc.setFontSize(10);
             doc.text('Data', 14, yPosition);
@@ -575,7 +490,7 @@
                 const distance = trip.distance.toFixed(2);
                 const fare = (trip.fare || 0).toFixed(2);
                 
-                if (yPosition > 270) { // Adiciona nova página se necessário
+                if (yPosition > 270) {
                     doc.addPage();
                     yPosition = 20;
                 }
@@ -586,7 +501,6 @@
                 yPosition += 7;
             });
 
-            // Resumo
             const totalKm = filteredByType.reduce((sum, trip) => sum + trip.distance, 0).toFixed(2);
             const totalEarnings = filteredByType.reduce((sum, trip) => sum + (trip.fare || 0), 0).toFixed(2);
             yPosition += 10;
@@ -635,7 +549,7 @@
                     </div>
                     <div class="text-right">
                         <p class="font-bold">${trip.distance.toFixed(2)} km</p>
-                        <button onclick="editTripFare(${originalIndex})" class="text-xs bg-blue-500 hover:bg-blue-600 text-white font-medium py-1 px-2 rounded mt-1">
+                        <button onclick="window.editTripFare(${originalIndex})" class="text-xs bg-blue-500 hover:bg-blue-600 text-white font-medium py-1 px-2 rounded mt-1">
                             <i class="fas fa-edit mr-1"></i>Valor: R$ ${(trip.fare || 0).toFixed(2)}
                         </button>
                     </div>
@@ -654,6 +568,49 @@
                 displayProfits();
                 displayReports();
             }
+        }
+
+        function downloadBackup() {
+            const dataStr = JSON.stringify(appData, null, 2);
+            const dataBlob = new Blob([dataStr], { type: 'application/json' });
+            const url = URL.createObjectURL(dataBlob);
+            const link = document.createElement('a');
+            link.setAttribute('href', url);
+            link.setAttribute('download', `km_calculado_backup_${new Date().toISOString().split('T')[0]}.json`);
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            URL.revokeObjectURL(url);
+            alert('Backup baixado com sucesso!');
+        }
+
+        function uploadBackup(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                try {
+                    const content = e.target.result;
+                    const importedData = JSON.parse(content);
+
+                    if (importedData && typeof importedData === 'object' && importedData.trips && importedData.costs) {
+                        if (confirm('Atenção: Isso irá substituir TODOS os seus dados atuais. Deseja continuar?')) {
+                            Object.assign(appData, importedData);
+                            saveData();
+                            loadData();
+                            alert('Backup restaurado com sucesso!');
+                        }
+                    } else {
+                        alert('Arquivo de backup inválido ou corrompido.');
+                    }
+                } catch (error) {
+                    console.error("Erro ao ler o arquivo de backup:", error);
+                    alert('Falha ao ler o arquivo. Verifique se é um backup válido do KM Calculado.');
+                }
+            };
+            reader.readAsText(file);
+            event.target.value = '';
         }
 
         // =================================================================
@@ -680,7 +637,7 @@
                     </div>
                     <div class="text-right">
                         <p class="font-bold text-red-600">R$ ${fine.value.toFixed(2)}</p>
-                        <button onclick="deleteFine(${originalIndex})" class="text-xs text-red-500 hover:text-red-700"><i class="fas fa-trash"></i></button>
+                        <button onclick="window.deleteFine(${originalIndex})" class="text-xs text-red-500 hover:text-red-700"><i class="fas fa-trash"></i></button>
                     </div>
                 `;
                 finesList.appendChild(fineElement);
@@ -862,116 +819,120 @@
         // =================================================================
         // EVENT LISTENERS
         // =================================================================
-        document.getElementById('configForm').addEventListener('submit', (e) => {
-            e.preventDefault();
-            appData.vehicleModel = document.getElementById('vehicle-model-input').value;
-            appData.vehicleCategory = document.getElementById('vehicle-category-input').value;
-            appData.vehicleType = document.querySelector('input[name="vehicleType"]:checked').value;
-            appData.targetProfit = parseFloat(document.getElementById('target-profit').value) || 0;
-            appData.targetKm = parseFloat(document.getElementById('target-km').value) || 1;
-            appData.costs.common.maintenanceCost = parseFloat(document.getElementById('maintenance-cost').value) || 0;
-            appData.costs.common.snacksCost = parseFloat(document.getElementById('snacks-cost').value) || 0;
-            appData.costs.common.carwashCost = parseFloat(document.getElementById('carwash-cost').value) || 0;
-            appData.costs.common.cleaningCost = parseFloat(document.getElementById('cleaning-cost').value) || 0;
-            appData.fuel.type = document.querySelector('input[name="fuelType"]:checked').value;
-            appData.fuel.price = parseFloat(document.getElementById('fuel-price').value) || 0;
-            appData.fuel.consumption = parseFloat(document.getElementById('fuel-consumption').value) || 1;
+        function attachEventListeners() {
+            document.getElementById('configForm').addEventListener('submit', (e) => {
+                e.preventDefault();
+                appData.vehicleModel = document.getElementById('vehicle-model-input').value;
+                appData.vehicleCategory = document.getElementById('vehicle-category-input').value;
+                appData.vehicleType = document.querySelector('input[name="vehicleType"]:checked').value;
+                appData.targetProfit = parseFloat(document.getElementById('target-profit').value) || 0;
+                appData.targetKm = parseFloat(document.getElementById('target-km').value) || 1;
+                appData.costs.common.maintenanceCost = parseFloat(document.getElementById('maintenance-cost').value) || 0;
+                appData.costs.common.snacksCost = parseFloat(document.getElementById('snacks-cost').value) || 0;
+                appData.costs.common.carwashCost = parseFloat(document.getElementById('carwash-cost').value) || 0;
+                appData.costs.common.cleaningCost = parseFloat(document.getElementById('cleaning-cost').value) || 0;
+                appData.fuel.type = document.querySelector('input[name="fuelType"]:checked').value;
+                appData.fuel.price = parseFloat(document.getElementById('fuel-price').value) || 0;
+                appData.fuel.consumption = parseFloat(document.getElementById('fuel-consumption').value) || 1;
 
-            if (appData.vehicleType === 'rented') {
-                appData.costs.rented.rentalCost = parseFloat(document.getElementById('rental-cost').value) || 0;
-                appData.costs.rented.rentalAllowance = parseFloat(document.getElementById('rental-allowance').value) || 0;
-                appData.costs.rented.excessMileageFee = parseFloat(document.getElementById('excess-mileage-fee').value) || 0;
-            } else if (appData.vehicleType === 'financed') {
-                appData.costs.financed.financedPayment = parseFloat(document.getElementById('financed-payment').value) || 0;
-                appData.costs.financed.insuranceIpvaCost = parseFloat(document.getElementById('insurance-ipva-cost').value) || 0;
-            } else {
-                appData.costs.owned.depreciationCost = parseFloat(document.getElementById('depreciation-cost').value) || 0;
-                appData.costs.owned.insuranceIpvaCost = parseFloat(document.getElementById('insurance-ipva-cost-owned').value) || 0;
-            }
+                if (appData.vehicleType === 'rented') {
+                    appData.costs.rented.rentalCost = parseFloat(document.getElementById('rental-cost').value) || 0;
+                    appData.costs.rented.rentalAllowance = parseFloat(document.getElementById('rental-allowance').value) || 0;
+                    appData.costs.rented.excessMileageFee = parseFloat(document.getElementById('excess-mileage-fee').value) || 0;
+                } else if (appData.vehicleType === 'financed') {
+                    appData.costs.financed.financedPayment = parseFloat(document.getElementById('financed-payment').value) || 0;
+                    appData.costs.financed.insuranceIpvaCost = parseFloat(document.getElementById('insurance-ipva-cost').value) || 0;
+                } else {
+                    appData.costs.owned.depreciationCost = parseFloat(document.getElementById('depreciation-cost').value) || 0;
+                    appData.costs.owned.insuranceIpvaCost = parseFloat(document.getElementById('insurance-ipva-cost-owned').value) || 0;
+                }
 
-            saveData();
-            updateVehicleModelDisplay();
-            alert('Dados salvos com sucesso!');
-            showView('analysis');
-        });
-
-        document.getElementById('fineForm').addEventListener('submit', (e) => {
-            e.preventDefault();
-            const value = parseFloat(document.getElementById('fine-value').value);
-            const description = document.getElementById('fine-description').value;
-            const date = document.getElementById('fine-date').value;
-            const newFine = { value, description, date };
-            appData.fines.push(newFine);
-            saveData();
-            displayFines();
-            document.getElementById('fine-value').value = '';
-            document.getElementById('fine-description').value = '';
-            document.getElementById('fine-date').value = new Date().toISOString().split('T')[0];
-            alert('Multa adicionada com sucesso!');
-        });
-
-        document.getElementById('report-period').addEventListener('change', (e) => {
-            const customRange = document.getElementById('custom-date-range');
-            if (e.target.value === 'custom') {
-                customRange.classList.remove('hidden');
-            } else {
-                customRange.classList.add('hidden');
-                displayReports();
-            }
-        });
-
-        document.getElementById('profits-period').addEventListener('change', (e) => {
-            const customRange = document.getElementById('profits-custom-date-range');
-            if (e.target.value === 'custom') {
-                customRange.classList.remove('hidden');
-            } else {
-                customRange.classList.add('hidden');
-                displayProfits();
-            }
-        });
-
-        document.querySelectorAll('#report-period, #report-date-from, #report-date-to, input[name="report-filter-type"]').forEach(element => {
-            element.addEventListener('change', displayReports);
-        });
-        
-        document.querySelectorAll('#profits-period, #profits-date-from, #profits-date-to').forEach(element => {
-            element.addEventListener('change', displayProfits);
-        });
-
-        document.querySelectorAll('input[name="vehicleType"]').forEach(radio => {
-            radio.addEventListener('change', () => {
-                updateVehicleDetailsUI();
-                populateVehicleSpecificFields();
+                saveData();
+                updateVehicleModelDisplay();
+                alert('Dados salvos com sucesso!');
+                showView('analysis');
             });
-        });
 
-        // --- LISTENERS DE BACKUP ---
-        document.getElementById('downloadBackupBtn').addEventListener('click', downloadBackup);
-        document.getElementById('uploadBackupBtn').addEventListener('click', () => {
-            document.getElementById('backupFileInput').click();
-        });
-        document.getElementById('backupFileInput').addEventListener('change', uploadBackup);
-
-        // --- LISTENERS DE RELATÓRIO ---
-        document.getElementById('downloadReportCsvBtn').addEventListener('click', downloadReportCsv);
-        document.getElementById('downloadReportPdfBtn').addEventListener('click', downloadReportPdf);
-
-        // --- LISTENERS DE VIAGEM ---
-        document.getElementById('startTripBtn').addEventListener('click', () => {
-            if (!navigator.geolocation) {
-                alert('Seu navegador não suporta geolocalização. Não é possível iniciar a viagem.');
-                return;
-            }
-            tripStartTime = new Date();
-            lastPosition = null;
-            totalDistance = 0;
-            document.getElementById('startTripBtn').classList.add('hidden');
-            document.getElementById('endTripBtn').classList.remove('hidden');
-            document.getElementById('tripStatus').innerHTML = '<p class="text-yellow-600 font-bold"><i class="fas fa-spinner fa-spin mr-2"></i>Aguardando sinal do GPS...</p>';
-            watchId = navigator.geolocation.watchPosition(onLocationSuccess, onLocationError, {
-                enableHighAccuracy: true, timeout: 10000, maximumAge: 0
+            document.getElementById('fineForm').addEventListener('submit', (e) => {
+                e.preventDefault();
+                const value = parseFloat(document.getElementById('fine-value').value);
+                const description = document.getElementById('fine-description').value;
+                const date = document.getElementById('fine-date').value;
+                const newFine = { value, description, date };
+                appData.fines.push(newFine);
+                saveData();
+                displayFines();
+                document.getElementById('fine-value').value = '';
+                document.getElementById('fine-description').value = '';
+                document.getElementById('fine-date').value = new Date().toISOString().split('T')[0];
+                alert('Multa adicionada com sucesso!');
             });
-        });
+
+            document.getElementById('report-period').addEventListener('change', (e) => {
+                const customRange = document.getElementById('custom-date-range');
+                if (e.target.value === 'custom') {
+                    customRange.classList.remove('hidden');
+                } else {
+                    customRange.classList.add('hidden');
+                    displayReports();
+                }
+            });
+
+            document.getElementById('profits-period').addEventListener('change', (e) => {
+                const customRange = document.getElementById('profits-custom-date-range');
+                if (e.target.value === 'custom') {
+                    customRange.classList.remove('hidden');
+                } else {
+                    customRange.classList.add('hidden');
+                    displayProfits();
+                }
+            });
+
+            document.querySelectorAll('#report-period, #report-date-from, #report-date-to, input[name="report-filter-type"]').forEach(element => {
+                element.addEventListener('change', displayReports);
+            });
+            
+            document.querySelectorAll('#profits-period, #profits-date-from, #profits-date-to').forEach(element => {
+                element.addEventListener('change', displayProfits);
+            });
+
+            document.querySelectorAll('input[name="vehicleType"]').forEach(radio => {
+                radio.addEventListener('change', () => {
+                    updateVehicleDetailsUI();
+                    populateVehicleSpecificFields();
+                });
+            });
+
+            document.getElementById('startTripBtn').addEventListener('click', () => {
+                if (!navigator.geolocation) {
+                    alert('Seu navegador não suporta geolocalização. Não é possível iniciar a viagem.');
+                    return;
+                }
+                tripStartTime = new Date();
+                lastPosition = null;
+                totalDistance = 0;
+                document.getElementById('startTripBtn').classList.add('hidden');
+                document.getElementById('endTripBtn').classList.remove('hidden');
+                document.getElementById('tripStatus').innerHTML = '<p class="text-yellow-600 font-bold"><i class="fas fa-spinner fa-spin mr-2"></i>Aguardando sinal do GPS...</p>';
+                watchId = navigator.geolocation.watchPosition(onLocationSuccess, onLocationError, {
+                    enableHighAccuracy: true, timeout: 10000, maximumAge: 0
+                });
+            });
+
+            document.getElementById('endTripBtn').addEventListener('click', endTrip);
+
+            document.getElementById('downloadReportCsvBtn').addEventListener('click', downloadReportCsv);
+            document.getElementById('downloadReportPdfBtn').addEventListener('click', downloadReportPdf);
+            document.getElementById('clearAllTrips').addEventListener('click', clearAllTrips);
+            document.getElementById('clearAllFines').addEventListener('click', clearAllFines);
+
+            document.getElementById('downloadBackupBtn').addEventListener('click', downloadBackup);
+            document.getElementById('uploadBackupBtn').addEventListener('click', () => {
+                document.getElementById('backupFileInput').click();
+            });
+            document.getElementById('backupFileInput').addEventListener('change', uploadBackup);
+            document.getElementById('checkUpdatesBtn').addEventListener('click', checkForUpdates);
+        }
 
         function endTrip() {
             if (watchId !== null) {
@@ -998,17 +959,20 @@
             document.getElementById('tripStatus').innerHTML = '<p class="text-gray-500">Nenhuma viagem em andamento.</p>';
         }
 
-        document.getElementById('endTripBtn').addEventListener('click', endTrip);
-        document.getElementById('clearAllTrips').addEventListener('click', clearAllTrips);
-        document.getElementById('clearAllFines').addEventListener('click', clearAllFines);
-
         // =================================================================
         // INICIALIZAÇÃO E PWA
         // =================================================================
         window.onload = () => {
+            // Expondo funções globalmente para que possam ser chamadas pelos botões
+            window.showView = showView;
+            window.deleteTrip = deleteTrip;
+            window.deleteFine = deleteFine;
+            window.editTripFare = editTripFare;
+            
             loadData();
             showView('analysis');
             document.getElementById('fine-date').value = new Date().toISOString().split('T')[0];
+            attachEventListeners();
         };
 
         let deferredPrompt;
